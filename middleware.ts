@@ -34,6 +34,9 @@ export async function middleware(req: NextRequest) {
   if (req.method !== "GET") {
     return NextResponse.next();
   }
+  console.log("vpp_url = " + process.env.VERCEL_PROJECT_PRODUCTION_URL);
+  console.log("hostname = " + req.nextUrl.hostname);
+
   // We only run blue-green deployments when accesing from production urls
   if (req.nextUrl.hostname !== process.env.VERCEL_PROJECT_PRODUCTION_URL) {
     return NextResponse.next();
